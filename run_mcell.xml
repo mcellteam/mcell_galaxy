@@ -1,0 +1,37 @@
+<tool id="RUN_MCELL1" name="Run MCell" force_history_refresh="True" version="0.0.1">
+  <description>Runs an MCell simulation from a JSON Data Model file.</description>
+  <command interpreter="python">maf_to_bed.py "${ input1 }" "${ out_file1 }" "${ species }" "${ complete_blocks }" "." "${ out_file1.id }"</command>
+  <inputs>
+    <param format="json" name="input1" type="data" label="JSON file to run"/>
+  </inputs>
+  <outputs>
+    <data format="bed" name="out_file1" />
+  </outputs>
+  <tests>
+    <!--test>
+      <param name="input1" value="4.maf"/>
+      <param name="species" value="hg17"/>
+      <param name="complete_blocks" value="partial_disallowed"/>
+      <output name="out_file1" file="cf_maf_to_bed.dat"/>
+    </test-->
+  </tests>
+  <help>
+
+**What it does**
+
+This tool runs MCell on a JSON Data Model
+
+The interface for this tool contains two pages (steps): 
+
+ * **Step 1 of 2**. Upload a Data Model
+ * **Step 2 of 2**. Run the Model
+
+------
+
+**Citation**
+
+If you use this tool, please cite `Bartol T.M.; MCell ... . &lt;http://www.mcell.org&gt;`_
+
+    </help>
+</tool>
+
