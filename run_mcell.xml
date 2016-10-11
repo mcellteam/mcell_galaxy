@@ -1,11 +1,11 @@
 <tool id="RUN_MCELL1" name="Run MCell" force_history_refresh="True" version="0.0.1">
   <description>Runs an MCell simulation from a JSON Data Model file.</description>
-  <command interpreter="python">maf_to_bed.py "${ input1 }" "${ out_file1 }" "${ species }" "${ complete_blocks }" "." "${ out_file1.id }"</command>
+  <command interpreter="python">run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }"</command>
   <inputs>
     <param format="json" name="input1" type="data" label="JSON file to run"/>
   </inputs>
   <outputs>
-    <data format="bed" name="out_file1" />
+    <data format="json" name="out_file1" />
   </outputs>
   <tests>
     <!--test>
