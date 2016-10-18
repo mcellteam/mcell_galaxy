@@ -1,8 +1,26 @@
 <tool id="RUN_MCELL1" name="Run MCell" force_history_refresh="True" version="0.0.1">
   <description>Runs an MCell simulation from a JSON Data Model file.</description>
-  <command interpreter="python">run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }"</command>
+  <command interpreter="python">
+    <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
+    <!-- This is cheetah code to turn inputs into a command line -->
+    <!-- Parameters ($xxx) come from the XML <param name="xxx" ...>   -->
+    #if $seed.userSpecified == "Yes" #run_mcell.py $input $seed.userSeed
+    #else                            #run_mcell.py $input 1
+    #end if
+  </command>
   <inputs>
-    <param format="json" name="input1" type="data" label="JSON file to run"/>
+    <param format="json" name="input" type="data" label="JSON data model to run"/>
+    <conditional name="seed">
+        <param name="userSpecified" type="select" label="Select a seed?" help="see example below">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </param>
+        <when value="Yes">
+            <param name="userSeed" type="integer" size="4" value="1" label="User Seed" help="choose a seed to run"/>
+        </when>
+        <when value="No">
+        </when>
+    </conditional>
   </inputs>
   <outputs>
     <data format="json" name="out_file1" />

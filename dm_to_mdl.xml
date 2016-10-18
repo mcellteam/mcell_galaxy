@@ -1,0 +1,40 @@
+<tool id="DM2MDL1" name="Data Model to MDL" force_history_refresh="True" version="0.0.1">
+  <description>Converts a JSON Data Model file into and MDL file.</description>
+  <command interpreter="python">
+    <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
+    dm_to_mdl.py $input $mdl_out
+  </command>
+  <inputs>
+    <param format="json" name="input" type="data" label="JSON data model to run"/>
+  </inputs>
+  <outputs>
+    <data format="txt" name="mdl_out" />
+  </outputs>
+  <tests>
+    <!--test>
+      <param name="input1" value="4.maf"/>
+      <param name="species" value="hg17"/>
+      <param name="complete_blocks" value="partial_disallowed"/>
+      <output name="out_file1" file="cf_maf_to_bed.dat"/>
+    </test-->
+  </tests>
+  <help>
+
+**What it does**
+
+This tool runs MCell on a JSON Data Model
+
+The interface for this tool contains two pages (steps): 
+
+ * **Step 1 of 2**. Upload a Data Model
+ * **Step 2 of 2**. Run the Model
+
+------
+
+**Citation**
+
+If you use this tool, please cite `Bartol T.M.; MCell ... . &lt;http://www.mcell.org&gt;`_
+
+    </help>
+</tool>
+

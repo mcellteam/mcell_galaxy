@@ -23,4 +23,4 @@ f = open ( '/scratch/Galaxy/galaxy/junk.txt', 'w' )
 f.write ( "In __main__\n" )
 for arg in sys.argv:
   f.write ( "  arg: " + str(arg) + "\n" )
-
+f.close()

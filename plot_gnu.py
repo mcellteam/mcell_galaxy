@@ -14,6 +14,7 @@ Plot a file ...
   arg: 800,600  # output size
 """
 
+import os
 import string
 import sys
 import tempfile
@@ -23,14 +24,16 @@ assert sys.version_info[:2] >= ( 2, 4 )
 
 f = open ( '/scratch/Galaxy/galaxy/junk.txt', 'w' )
 f.write ( "In __main__\n" )
+f.write ( "cwd = " + os.getcwd() )
 for arg in sys.argv:
   f.write ( "  arg: " + str(arg) + "\n" )
 
 p = subprocess.Popen ( [ "gnuplot" ], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 p.stdin.write ( "set term png\n".encode() )
 # p.stdin.write ( "set output '/scratch/Galaxy/galaxy/cos88.png'\n".encode() )
-p.stdin.write ( "set output '" + sys.argv[8] + "'\n".encode() )
-p.stdin.write ( "plot cos(x)\n".encode() )
+p.stdin.write ( "set output '" + sys.argv[3] + "'\n".encode() )
+# p.stdin.write ( "plot cos(x)\n".encode() )
+p.stdin.write ( ( "plot \"%s\" using 1:2 title '%s' with lines\n" % (sys.argv[1], sys.argv[2]) ).encode() )
 p.stdin.write ( "quit\n".encode() )
 p.stdin.flush()
 

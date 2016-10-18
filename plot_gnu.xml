@@ -1,6 +1,7 @@
 <tool id="plot_gnu" name="GNU Plot" version="0.0.1">
-  <description>for multiple columns</description>
+  <description>for single columns</description>
   <command interpreter="python">
+    <!-- This is cheetah code to turn inputs into a command line -->
     #if $xtic.userSpecified == "Yes" #plot_gnu.py $input $xtic.xticColumn $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size"
     #else                            #plot_gnu.py $input 0                $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size"
     #end if
