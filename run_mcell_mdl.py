@@ -52,17 +52,32 @@ def __main__():
   f.write ( "listdir(.) = " + str(files) )
   
   if len(files) > 0:
-    # Copy the first output file to the Galaxy output data file (arg[2])
-    react_file = open ( data_dir + "/" + files[0] )
-    react_lines = react_file.readlines()
+    react_files = []
+    react_cols = []
+    for react_file_name in files:
+      react_file = open ( data_dir + "/" + react_file_name )
+      react_lines = react_file.readlines()
+      l0 = []
+      l1 = []
+      for l in react_lines:
+        l = l.strip()
+        l = l.split()
+        if len(l) == 2:
+          l0.append ( l[0] )
+          l1.append ( l[1] )
+      if len(react_cols) == 0:
+        react_cols.append ( l0 )
+      react_cols.append ( l1 )
+      react_file.close()
+
     fout = open ( out_file, "w" )
-    for l in react_lines:
-      l = l.strip()
-      l = l.split()
-      if len(l) == 2:
-        l = l[0] + '\t' + l[1] + os.linesep
-        fout.write ( l )
-    
+    for i in range ( len(react_cols[0]) ):
+      l = react_cols[0][i]
+      for col in range ( 1, len(react_cols) ):
+        l = l + '\t' + react_cols[col][i]
+      l = l + os.linesep
+      fout.write ( l )
+
   
   """
   input_filename = sys.argv[1]
