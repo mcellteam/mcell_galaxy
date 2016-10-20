@@ -13,9 +13,9 @@ import subprocess
 
 def __main__():
 
-  print ( "top of main" )
+  print ( "Running dm_to_mdl.py" )
   f = open ( '/scratch/Galaxy/galaxy/junk.txt', 'w' )
-  f.write ( "In __main__\n" )
+  f.write ( "In dm_to_mdl.py __main__\n" )
   f.write ( "cwd = " + os.getcwd() + "\n" )
   for i in range(len(sys.argv)):
     arg = sys.argv[i]
@@ -41,6 +41,8 @@ def __main__():
 
 
   f.close()
+
+  print ( "Finished dm_to_mdl.py" )
 
 if __name__ == "__main__":
     __main__()

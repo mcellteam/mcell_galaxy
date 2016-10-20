@@ -1,0 +1,23 @@
+<tool id="plot_gnu_simple" name="GNU Plot Simple" version="0.0.1">
+  <description>for single columns</description>
+  <command interpreter="python">
+    <!-- This is cheetah code to turn inputs into a command line -->
+    plot_gnu_simple.py $input $png_out "$title"
+  </command>
+  <inputs>
+    <param name="input" type="data" format="tabular" label="Dataset" help="Dataset missing? See TIP below"/>
+    <param name="title" type="text" size="30" value="Plot" label="Plot title"/>
+  </inputs>
+  <outputs>
+    <data format="png" name="png_out" />
+  </outputs>
+  <!--requirements>
+    <requirement type="python-module">Gnuplot</requirement>
+    <requirement type="python-module">Numeric</requirement>
+  </requirements-->
+  <help>
+**What it does**
+
+This tool plots a two column file.
+</help>
+</tool>

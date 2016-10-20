@@ -1,0 +1,55 @@
+<tool id="RUN_MCELL_MDL1" name="Run MCell MDL" force_history_refresh="True" version="0.0.1">
+  <description>Runs an MCell simulation from an MDL file.</description>
+  <command interpreter="python">
+    <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
+    <!-- This is cheetah code to turn inputs into a command line -->
+    <!-- Parameters ($xxx) come from the XML <param name="xxx" ...>   -->
+    #if $seed.userSpecified == "Yes" #run_mcell_mdl.py $mdl_input $mcell_output $seed.userSeed
+    #else                            #run_mcell_mdl.py $mdl_input $mcell_output 1
+    #end if
+  </command>
+  <inputs>
+    <param format="txt" name="mdl_input" type="data" label="MDL file to run"/>
+    <conditional name="seed">
+        <param name="userSpecified" type="select" label="Select a seed?" help="see example below">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </param>
+        <when value="Yes">
+            <param name="userSeed" type="integer" size="4" value="1" label="User Seed" help="choose a seed to run"/>
+        </when>
+        <when value="No">
+        </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="mcell_output" />
+  </outputs>
+  <tests>
+    <!--test>
+      <param name="input1" value="4.maf"/>
+      <param name="species" value="hg17"/>
+      <param name="complete_blocks" value="partial_disallowed"/>
+      <output name="out_file1" file="cf_maf_to_bed.dat"/>
+    </test-->
+  </tests>
+  <help>
+
+**What it does**
+
+This tool runs MCell on an MDL file
+
+The interface for this tool contains two pages (steps): 
+
+ * **Step 1 of 2**. Upload a Data Model
+ * **Step 2 of 2**. Run the Model
+
+------
+
+**Citation**
+
+If you use this tool, please cite `Bartol T.M.; MCell ... . &lt;http://www.mcell.org&gt;`_
+
+    </help>
+</tool>
+

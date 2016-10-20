@@ -1,8 +1,19 @@
 #!/usr/bin/env python
 """
 Plot a file ...
-  arg: /scratch/Galaxy/galaxy/tools/mcell/plot_gnu.py
 
+  arg[0] = /scratch/Galaxy/galaxy/tools/mcell/plot_gnu.py
+  arg[1] = /scratch/Galaxy/galaxy/database/files/000/dataset_180.dat
+  arg[2] = 1
+  arg[3] = 1,2
+  arg[4] = Plot
+  arg[5] = V1
+  arg[6] = 0
+  arg[7] = 0
+  arg[8] = /scratch/Galaxy/galaxy/database/files/000/dataset_182.dat
+  arg[9] = 800,600
+
+  arg: /scratch/Galaxy/galaxy/tools/mcell/plot_gnu.py
   arg: /scratch/Galaxy/galaxy/database/files/000/dataset_40.dat
   arg: 1      # Column  to plot as x
   arg: 2,3,5  # Columns to plot as y
@@ -30,12 +41,16 @@ for i in range (len(sys.argv)):
   arg = sys.argv[i]
   f.write ( "  arg[" + str(i) + "] = " + str(arg) + "\n" )
 
+infile = sys.argv[1]
+pngfile = sys.argv[2]
+title = sys.argv[3]
+
 p = subprocess.Popen ( [ "gnuplot" ], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 p.stdin.write ( "set term png\n".encode() )
 # p.stdin.write ( "set output '/scratch/Galaxy/galaxy/cos88.png'\n".encode() )
-p.stdin.write ( "set output '" + sys.argv[8] + "'\n".encode() )
+p.stdin.write ( "set output '" + pngfile + "'\n".encode() )
 # p.stdin.write ( "plot cos(x)\n".encode() )
-p.stdin.write ( ( "plot \"%s\" using 1:2 title '%s' with lines\n" % (sys.argv[1], "Plot Title") ).encode() )
+p.stdin.write ( ( "plot \"%s\" using 1:2 title '%s' with lines\n" % (infile, title) ).encode() )
 p.stdin.write ( "quit\n".encode() )
 p.stdin.flush()
 
