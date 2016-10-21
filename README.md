@@ -1,9 +1,7 @@
 # mcell_galaxy
 Project to create an MCell tool that works within Galaxy
 
-The files in this project should be placed in a directory named "galaxy/tools/mcell".
-
-The file "galaxy/config/tool_conf.xml" should include an "mcell" section as shown here:
+The files in this project may be copied on top of a fresh installation of Galaxy. Otherwise the files should be merged into a pre-existing Galaxy installation with the addition of an "mcell" section to the "galaxy/config/tool_conf.xml" file as shown here:
 
 
     <?xml version='1.0' encoding='utf-8'?>
