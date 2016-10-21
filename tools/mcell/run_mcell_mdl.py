@@ -15,7 +15,7 @@ import time
 def __main__():
 
   print ( "Running run_mcell_mdl.py" )
-  f = open ( '/scratch/Galaxy/galaxy/junk.txt', 'w' )
+  f = open ( '../../../../../../junk_out.txt', 'w' )
   f.write ( "In run_mcell_mdl.py __main__\n" )
   f.write ( "cwd = " + os.getcwd() + "\n" )
   for i in range(len(sys.argv)):

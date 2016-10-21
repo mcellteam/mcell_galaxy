@@ -8,7 +8,7 @@ import subprocess
 
 assert sys.version_info[:2] >= ( 2, 4 )
 
-f = open ( '/scratch/Galaxy/galaxy/junk.txt', 'w' )
+f = open ( '../../../../../../junk_out.txt', 'w' )
 f.write ( "In __main__\n" )
 f.write ( "cwd = " + os.getcwd() + "\n" )
 
