@@ -24,6 +24,7 @@ import string
 import sys
 import tempfile
 import os
+import subprocess
 
 f = open ( '../../../../../../junk_out.txt', 'w' )
 f.write ( "In __main__\n" )
@@ -40,122 +41,52 @@ def stop_err(msg):
     sys.stderr.write(msg)
     sys.exit()
 
-
 try:
   import matplotlib as mpl
-  #import matplotlib.pyplot as plt
+  import matplotlib.pyplot as plt
+
 except:
   stop_err("No MatPlotLib\n")
+
+f.write ( "mpl savefig.dpi = " + str(mpl.rcParams['savefig.dpi']) )
+
+infile = sys.argv[1]
+pngfile = sys.argv[8]
+title = sys.argv[4]
+dpi = sys.argv[10]
+
+# Determine the number of columns
+data_file = open ( infile )
+
+table = [x.strip().split('\t') for x in data_file]
+
+num_cols = 0
+if len(table) > 0:
+  if len(table[0]) > 0:
+    num_cols = len(table[0])
+
+f.write ( "Num columns = " + str(num_cols) )
+
+if num_cols > 1:
+
+  #mpl.rcParams['figure.facecolor'] = 'white'
+
+  fig = plt.figure()
+  fig.suptitle('Reaction Data', fontsize=18.5)
+  ax = fig.add_subplot(111)
+  ax.spines['top'].set_color('none')
+  ax.spines['right'].set_color('none')
+  ax.xaxis.set_ticks_position('bottom')
+  ax.yaxis.set_ticks_position('left')
+  ax.set_xlabel(r'Time (s)')
+  ax.set_ylabel(r'Count')
   
+  t_vals = [ s[0] for s in table ]
 
+  legend = False
+  for col in range(1, num_cols):
+    y_vals = [ s[col] for s in table ]
+    ax.plot ( t_vals, y_vals, label="Column %d" % col )
 
-try:
-  import Gnuplot
-  import Gnuplot.funcutils
-except:
-  stop_err("No GnuPlot\n")
-  
+  plt.savefig(pngfile, format="png", facecolor='white', dpi=float(dpi))
 
-def main(tmpFileName):
-    skipped_lines_count = 0
-    skipped_lines_index = []
-    gf = open(tmpFileName, 'w')
-
-    try:
-        in_file =           open( sys.argv[1], 'r' )
-        xtic =               int( sys.argv[2] )
-        col_list =  string.split( sys.argv[3], "," )
-        title =   'set title "' + sys.argv[4] + '"'
-        ylabel = 'set ylabel "' + sys.argv[5] + '"'
-        ymin =                    sys.argv[6]
-        ymax =                    sys.argv[7]
-        img_file =                sys.argv[8]
-        img_size =                sys.argv[9]
-    except:
-        stop_err("Check arguments\n")
-
-    try:
-        int( col_list[0] )
-    except:
-        stop_err('You forgot to set columns for plotting\n')
-
-    for i, line in enumerate( in_file ):
-        valid = True
-        line = line.rstrip('\r\n')
-        if line and not line.startswith( '#' ):
-            row = []
-            try:
-                fields = line.split( '\t' )
-                for col in col_list:
-                    row.append( str( float( fields[int( col ) - 1] ) ) )
-            except:
-                valid = False
-                skipped_lines_count += 1
-                skipped_lines_index.append(i)
-        else:
-            valid = False
-            skipped_lines_count += 1
-            skipped_lines_index.append(i)
-
-        if valid and xtic > 0:
-            row.append( fields[xtic - 1] )
-        elif valid and xtic == 0:
-            row.append( str( i ) )
-
-        if valid:
-            gf.write( '\t'.join( row ) )
-            gf.write( '\n' )
-
-    if skipped_lines_count < i:
-        # Prepare 'using' clause of plot statement
-        g_plot_command = ' '
-
-        # Set the first column
-        if xtic > 0:
-            g_plot_command = "'%s' using 1:xticlabels(%s) ti 'Column %s', " % ( tmpFileName, str( len( row ) ), col_list[0] )
-        else:
-            g_plot_command = "'%s' using 1 ti 'Column %s', " % ( tmpFileName, col_list[0] )
-
-        # Set subsequent columns
-        for i in range(1, len(col_list)):
-            g_plot_command += "'%s' using %s t 'Column %s', " % ( tmpFileName, str(i + 1), col_list[i] )
-
-        g_plot_command = g_plot_command.rstrip( ', ' )
-
-        yrange = 'set yrange [' + ymin + ":" + ymax + ']'
-
-        try:
-            g = Gnuplot.Gnuplot()
-            g('reset')
-            g('set boxwidth 0.9 absolute')
-            g('set style fill  solid 1.00 border -1')
-            g('set style histogram clustered gap 5 title  offset character 0, 0, 0')
-            g('set xtics border in scale 1,0.5 nomirror rotate by 90 offset character 0, 0, 0')
-            g('set key invert reverse Left outside')
-            if xtic == 0:
-                g('unset xtics')
-            g(title)
-            g(ylabel)
-            g_term = 'set terminal png tiny size ' + img_size
-            g(g_term)
-            g_out = 'set output "' + img_file + '"'
-            if ymin != ymax:
-                g(yrange)
-            g(g_out)
-            g('set style data histograms')
-            g.plot(g_plot_command)
-        except:
-            stop_err("Gnuplot error: Data cannot be plotted")
-    else:
-        sys.stderr.write('Column(s) %s of your dataset do not contain valid numeric data' % sys.argv[3])
-
-    if skipped_lines_count > 0:
-        sys.stdout.write('\nWARNING. You dataset contain(s) %d invalid lines starting with line #%d.  These lines were skipped while building the graph.\n' % ( skipped_lines_count, skipped_lines_index[0] + 1 ) )
-
-
-if __name__ == "__main__":
-    # The tempfile initialization is here because while inside the main() it seems to create a condition
-    # when the file is removed before gnuplot has a chance of accessing it
-    gp_data_file = tempfile.NamedTemporaryFile('w')
-    Gnuplot.gp.GnuplotOpts.default_term = 'png'
-    main(gp_data_file.name)

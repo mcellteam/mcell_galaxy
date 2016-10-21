@@ -1,4 +1,9 @@
 <tool id="RUN_MCELL_MDL1" name="Run MCell MDL" force_history_refresh="True" version="0.0.1">
+  <!--
+    Cheetah:
+      $anything is a "placeholder". Placeholders can be surrounded by {}, or (), or [], or nothing at all. Examples: $fname $(mi) ${lname}
+      #anything is a "directive"
+  -->
   <description>Runs an MCell simulation from an MDL file.</description>
   <command interpreter="python">
     <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->

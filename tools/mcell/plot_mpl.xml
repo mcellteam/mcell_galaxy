@@ -1,8 +1,8 @@
 <tool id="plot_mpl" name="Plot MPL" version="1.0.0">
   <description>for multiple columns</description>
   <command interpreter="python">
-    #if $xtic.userSpecified == "Yes" #plot_mpl.py $input $xtic.xticColumn $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size"
-    #else                            #plot_mpl.py $input 0                $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size"
+    #if $xtic.userSpecified == "Yes" #plot_mpl.py $input $xtic.xticColumn $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size" $dpi
+    #else                            #plot_mpl.py $input 0                $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size" $dpi
     #end if
   </command>
   <inputs>
@@ -31,6 +31,7 @@
         <option value="480,640">Small Flipped: 480 by 640</option>
         <option value="800,1480">Large Flipped: 800 by 1480</option>
     </param>
+    <param name="dpi" type="integer" size="4" value="100" label="Dots Per Inch of Image"/>
   </inputs>
   <outputs>
     <data format="png" name="out_file1" />
