@@ -1,0 +1,36 @@
+<tool id="SHOWDM1" name="Show Data Model" force_history_refresh="True" version="0.0.1">
+  <description>Displays a JSON Data Model.</description>
+  <command interpreter="python">
+    <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
+    show_dm.py $input $html_out
+  </command>
+  <inputs>
+    <param format="json" name="input" type="data" label="JSON data model to display"/>
+  </inputs>
+  <outputs>
+    <data format="html" name="html_out" />
+  </outputs>
+  <tests>
+    <!--test>
+      <param name="input1" value="4.maf"/>
+      <param name="species" value="hg17"/>
+      <param name="complete_blocks" value="partial_disallowed"/>
+      <output name="out_file1" file="cf_maf_to_bed.dat"/>
+    </test-->
+  </tests>
+  <help>
+
+**What it does**
+
+This tool displays a JSON Data Model
+
+
+------
+
+**Citation**
+
+If you use this tool, please cite `Bartol T.M.; MCell ... . &lt;http://www.mcell.org&gt;`_
+
+    </help>
+</tool>
+
