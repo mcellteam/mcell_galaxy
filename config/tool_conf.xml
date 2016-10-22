@@ -3,6 +3,7 @@
   <section id="mcell" name="MCell">
     <tool file="mcell/upload.xml" />
     <tool file="mcell/show_dm.xml" />
+    <tool file="mcell/modify_dm_parameters.xml" />
     <tool file="mcell/dm_to_mdl.xml" />
     <tool file="mcell/run_mcell_mdl.xml" />
     <tool file="mcell/run_mcell.xml" />

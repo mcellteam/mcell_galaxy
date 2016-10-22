@@ -1,4 +1,4 @@
-<tool id="RUN_MCELL_MDL1" name="Run MCell MDL" force_history_refresh="True" version="0.0.1">
+<tool id="MOD_DM_PAR1" name="Modify Parameters" force_history_refresh="True" version="0.0.1">
   <!--
     Cheetah:
       $anything is a "placeholder". Placeholders can be surrounded by {}, or (), or [], or nothing at all. Examples: $fname $(mi) ${lname}
@@ -9,26 +9,17 @@
     <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
     <!-- This is cheetah code to turn inputs into a command line -->
     <!-- Parameters ($xxx) come from the XML <param name="xxx" ...>   -->
-    #if $seed.userSpecified == "Yes" #run_mcell_mdl.py $mdl_input $mcell_output $seed.userSeed $mcell_parameters.par_name $mcell_parameters.par_value
-    #else                            #run_mcell_mdl.py $mdl_input $mcell_output 1              $mcell_parameters.par_name $mcell_parameters.par_value
-    #end if
+    modify_dm_parameters.py $json_input $json_output
   </command>
   <inputs>
-    <param format="txt" name="mdl_input" type="data" label="MDL file to run"/>
-    <conditional name="seed">
-        <param name="userSpecified" type="select" label="Select a seed?" help="see example below">
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-        </param>
-        <when value="Yes">
-            <param name="userSeed" type="integer" size="4" value="1" label="User Seed" help="choose a seed to run"/>
-        </when>
-        <when value="No">
-        </when>
-    </conditional>
+    <param format="json" name="json_input" type="data" label="JSON file to modify"/>
+    <repeat name="mcell_parameters" title="MCell Parameter to Modify">
+        <param name="par_name" type="text" size="4" value="Par_Name" label="Parameter Name" />
+        <param name="par_value" type="float" size="4" value="0" label="Parameter Value" />
+    </repeat>
   </inputs>
   <outputs>
-    <data format="tabular" name="mcell_output" />
+    <data format="json" name="json_output" />
   </outputs>
   <tests>
     <!--test>

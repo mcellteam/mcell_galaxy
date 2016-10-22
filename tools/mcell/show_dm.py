@@ -42,8 +42,6 @@ for i in range(len(sys.argv)):
   arg = sys.argv[i]
   f.write ( "  arg["+str(i)+"]: " + str(arg) + "\n" )
 
-python_exec = sys.executable
-
 tool_path = os.path.dirname(sys.argv[0])
 
 json_file_name = sys.argv[1]
