@@ -18,7 +18,7 @@
         <when value="No">
         </when>
     </conditional>
-    <param name="colList" label="Numerical columns" type="data_column" numerical="True" multiple="True" data_ref="input" help="Multi-select list - hold the appropriate key while clicking to select multiple columns" />
+    <param name="colList" label="Numerical columns" type="data_column" numerical="True" multiple="True" data_ref="input" help="Multi-select list - delete unwanted items" />
     <param name="title" type="text" size="30" value="Bar Chart" label="Plot title"/>
     <param name="ylabel" type="text" size="30" value="V1" label="Label for Y axis"/>
     <param name="ymin" type="integer" size="4" value="0" label="Minimal value on Y axis" help="set to 0 for autoscaling"/>
