@@ -9,7 +9,12 @@
     <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
     <!-- This is cheetah code to turn inputs into a command line -->
     <!-- Parameters ($xxx) come from the XML <param name="xxx" ...>   -->
-    modify_dm_parameters.py $json_input $json_output
+    modify_dm_parameters.py $json_input $json_output 
+    #set eq = '='
+    #for $par in $mcell_parameters:
+      #set $par_val = str($par.par_name)+$eq+str($par.par_value)
+      {$par_val}
+    #end for
   </command>
   <inputs>
     <param format="json" name="json_input" type="data" label="JSON file to modify"/>
