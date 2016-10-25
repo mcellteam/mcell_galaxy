@@ -154,20 +154,53 @@ as number 4 in this particular history. As before, we can click on the data set 
 ![MCellGalaxy](../images/04_modify_parameters_details.png?raw=true "MCell in Galaxy")
 
 As before, the "Show Data Model" tool has produced an HTML file of about 15KB. We can also click on 
-the "eye" icon to see the data set itself:
+the "eye" icon to see the data set itself. You'll note that the previous value of 1e4 has been changed
+to 30000.0 (which is 3e4).
 
 ![MCellGalaxy](../images/04_show_data_set_html.png?raw=true "MCell in Galaxy")
 
+This shows that we've been able to change one of the parameters in the data model. This change
+(and all of our work so far) is stored in the Galaxy history panel on the right.
+
+Now let's run the model in MCell. The current workflow requires that we convert the data model
+representation (JSON) into MCell's Model Description Language (MDL). The MCell/Galaxy tool group
+has a tool named "Data Model to MDL" designed for this task. When you select that tool, it will
+display another data set selection control in the center panel. As usual, it will have selected
+the most recent data set consistent with the tool. Since this tool expects JSON, it will default
+to our most recently created JSON data set which is the one we created by modifying the "dr" parameter:
 
 ![MCellGalaxy](../images/04_data_model_to_mdl.png?raw=true "MCell in Galaxy")
 
- The new data set will be number 4 in the history panel:
+Click the "Execute" button to perform the conversion. You will see this new data set added to the
+top of the history panel (on the right). In this example it is number "5" titled "5: Data Model to MDL
+on data 3" which reflects its history:
+
+![MCellGalaxy](../images/05_data_model_to_mdl_done.png?raw=true "MCell in Galaxy")
  
+As usual, we can click the data set name to show more information about the results. In this case it
+will show the output is "txt" format containing 118 lines. This is the appropriate format for MDL since
+there is no built-in representation for MDL files in Galaxy.
 
 ![MCellGalaxy](../images/05_data_model_to_mdl_details.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/05_data_model_to_mdl_done.png?raw=true "MCell in Galaxy")
+
+If we want to see the MDL itself, we can again use the "eye" button and it will display the MDL text
+in the center panel:
+
 ![MCellGalaxy](../images/05_data_model_to_mdl_eye.png?raw=true "MCell in Galaxy")
+
+Now we're ready to run MCell itself on the MDL file. The MCell tool group (left side) contains an item
+named "Run MCell MDL". Click on that item and it should show the MCell running page:
+
 ![MCellGalaxy](../images/05_run_mcell_page.png?raw=true "MCell in Galaxy")
+
+Once again, it has guessed at the most recent (and compatible) data set to use for input. Since it's
+looking for a text (MDL) file, the most recent item in the history is "5: Data Model to MDL on data 3",
+and that's what is selected in the "MDL file to run" field.
+
+The MCell run tool also contains an option seed that can be run. Changing the "Select a seed" field from
+"No" to "Yes" would bring up an additional field for setting the seed. It's not needed in this case,
+and we can use the default.
+
 
 ![MCellGalaxy](../images/10_gnu_plot_all_columns.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/10_gnu_plot_setup.png?raw=true "MCell in Galaxy")
