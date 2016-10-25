@@ -1,12 +1,14 @@
-# SWC Mesher
+# MCell Galaxy
 
-## Blender add-on to create a Blender Object from an SWC formatted file
+## Galaxy tools to run MCell within Galaxy
 
-This addon can read an SWC formatted file and generate either a line object or a mesh object.
+This suite of tools supports uploading of MCell/CellBlender data models, 
+modification of parameters within models, exporting data models to MDL,
+running MCell on exported MDL, plotting results in GnuPlot and MatPlotLib.
 
 * **[Description/Tutorial](files/description)**
 * **[Tips and Usage Notes](files/notes)**
 * **[Examples](files/examples)**
 * **[Source Files](files/source)**
 
-![Mesh](../images/front_page.png?raw=true "Galaxy with MCell")
+![MCellGalaxy](../images/front_page.png?raw=true "MCell running in Galaxy")
