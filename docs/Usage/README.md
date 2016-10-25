@@ -42,9 +42,13 @@ with a CellBlender data model and eventually produces MDL files. Some of these s
 be skipped by uploading an MDL file directly (use **Galaxy's Get Data / Upload File** and
 specify a type of "txt" to upload raw MDL files).
 
-We will start by uploading a JSON data model from CellBlender. Use the "Upload File" option
-shown in the MCell tool group. That will pop open a window allowing you to select (or drag
-and drop) a JSON data model into Galaxy:
+We will start by uploading a JSON data model from CellBlender. The file is available at:
+
+    https://github.com/mcellteam/mcell_galaxy/tree/master/docs/Usage/Release_Decay.json
+
+You may need to fetch it into your local file system for Galaxy to find it. Use the
+"Upload File" option shown in the MCell tool group. That will pop open a window allowing
+you to select (or drag and drop) the JSON data model into Galaxy:
 
 
 ![MCellGalaxy](../images/00_upload_json_data_model.png?raw=true "MCell in Galaxy")
