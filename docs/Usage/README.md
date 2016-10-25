@@ -47,12 +47,24 @@ and drop) a JSON data model into Galaxy:
 
 ![MCellGalaxy](../images/00_upload_json_data_model.png?raw=true "MCell in Galaxy")
 
-The following pictures need further description:
+After the upload completes, you will see the new data set in green on the right side panel:
 
+![MCellGalaxy](../images/01_first_data_set.png?raw=true "MCell in Galaxy")
+
+In this case, it gives the file name ("Release_Decay.json") and its data set number (1).
+There are also a number of controls shown, and we'll describe them next. The first of these
+is simply clicking on the data set name ("Release_Decay.json") which will expand the green
+data set panel to show more details:
 
 ![MCellGalaxy](../images/01_first_data_set_details.png?raw=true "MCell in Galaxy")
+
+To show the file itself, you can click on the "eye" icon ("View data"). This will fill the
+center panel with a view of that data set. In this case, the file contains JSON (without
+line breaks), and the default display is just the text without any wrapping:
+
 ![MCellGalaxy](../images/01_first_data_set_eye_view.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/01_first_data_set.png?raw=true "MCell in Galaxy")
+
+
 ![MCellGalaxy](../images/01_show_data_model_tool.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/02_modify_parameters_dr_2to3e4.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/02_modify_parameters_empty.png?raw=true "MCell in Galaxy")
