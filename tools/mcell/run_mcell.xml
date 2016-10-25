@@ -1,4 +1,4 @@
-<tool id="RUN_MCELL1" name="Run MCell" force_history_refresh="True" version="0.0.1">
+<tool id="RUN_MCELL1" name="Run MCell [EXERIMENTAL]" force_history_refresh="True" version="0.0.1">
   <description>Runs an MCell simulation from a JSON Data Model file.</description>
   <command interpreter="python">
     <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->

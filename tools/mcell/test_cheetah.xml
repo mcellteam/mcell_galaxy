@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<tool name="Test Cheetah" id="test_cheetah1" version="0.0.1" workflow_compatible="true">
+<tool name="Test Cheetah [EXPERIMENTAL]" id="test_cheetah1" version="0.0.1" workflow_compatible="true">
 
   <description>
     from your computer  

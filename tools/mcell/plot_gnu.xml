@@ -1,4 +1,4 @@
-<tool id="plot_gnu" name="GNU Plot" version="0.0.1">
+<tool id="plot_gnu" name="GNU Plot [EXPERIMENTAL]" version="0.0.1">
   <description>for single columns</description>
   <command interpreter="python">
     <!-- This is cheetah code to turn inputs into a command line -->

@@ -4,7 +4,7 @@
       $anything is a "placeholder". Placeholders can be surrounded by {}, or (), or [], or nothing at all. Examples: $fname $(mi) ${lname}
       #anything is a "directive"
   -->
-  <description>Runs an MCell simulation from an MDL file.</description>
+  <description>Modify Parameters in a Data Model.</description>
   <command interpreter="python">
     <!-- run_mcell.py "${ input1 }" "${ out_file1 }" "." "${ out_file1.id }" -->
     <!-- This is cheetah code to turn inputs into a command line -->
@@ -13,7 +13,7 @@
   </command>
   <inputs>
     <param format="json" name="json_input" type="data" label="JSON file to modify"/>
-    <repeat name="mcell_parameters" title="MCell Parameter to Modify">
+    <repeat name="mcell_parameters" title="MCell Parameters to Modify">
         <param name="par_name" type="text" size="4" value="Par_Name" label="Parameter Name" />
         <param name="par_value" type="float" size="4" value="0" label="Parameter Value" />
     </repeat>
@@ -33,12 +33,17 @@
 
 **What it does**
 
-This tool runs MCell on an MDL file
+This tool supports changing parameter fields in a CellBlender data model and saving the changes to a new data model.
 
-The interface for this tool contains two pages (steps): 
+This tool uses a somewhat cumbersome interface that requires the user to know the names of the parameters to be changed.
 
- * **Step 1 of 2**. Upload a Data Model
- * **Step 2 of 2**. Run the Model
+ * **Step 0**: Use the "Show Data Model" tool (or any other tool) to note the names of parameters in the JSON data model.
+ * **Step 1**: Use this tool to select the JSON data model data set to modify (usually the same one from Step 0).
+ * **Step 2**: Use the "Insert" button to add a new MCell parameter change block for each parameter to be changed.
+ * **Step 3**: Type in the Parameter Name and Parameter Value fields.
+ * **Step 4**: Use the "Execute" button to build the new data model based on the original with the changes added.
+
+Note that this tool can change existing parameters and also add new parameters.
 
 ------
 

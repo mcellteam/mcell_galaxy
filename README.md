@@ -17,3 +17,5 @@ The files in this project may be copied on top of a fresh installation of Galaxy
         <tool file="mcell/test_cheetah.xml" />
       </section>
 
+
+In order to run MCell itself, the mcell executable must be placed in the galaxy/tools/mcell directory. A recent version is currently stored in the repository for convenience.
