@@ -1,7 +1,7 @@
 # MCell Galaxy
 
-.. WARNING::
-   This is a preliminary version.
+..  CAUTION::
+    This is a preliminary version.
 
 ## Galaxy tools to run MCell within Galaxy
 
