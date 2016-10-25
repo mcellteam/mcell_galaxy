@@ -1,5 +1,5 @@
-# mcell_galaxy
-Project to create an MCell tool that works within Galaxy
+# MCell Galaxy
 
-Help
+## Galaxy tools to run MCell within Galaxy
 
+See additional documents in this directory.

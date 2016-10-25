@@ -1,10 +1,11 @@
 # MCell Galaxy
 
-## Installation tips
+## Installation Details
 
-Project to create an MCell tool that works within Galaxy
-
-The files in this project may be copied on top of a fresh installation of Galaxy. Otherwise the files should be merged into a pre-existing Galaxy installation with the addition of an "mcell" section to the "galaxy/config/tool_conf.xml" file as shown here:
+The files in this project may be copied on top of a fresh installation of Galaxy. 
+Otherwise the files should be merged into a pre-existing Galaxy installation with 
+the addition of an "mcell" section added to the "galaxy/config/tool_conf.xml" file 
+as shown here:
 
 
     <?xml version='1.0' encoding='utf-8'?>
@@ -21,4 +22,6 @@ The files in this project may be copied on top of a fresh installation of Galaxy
       </section>
 
 
-In order to run MCell itself, the mcell executable must be placed in the galaxy/tools/mcell directory. A recent version is currently stored in the repository for convenience.
+In order to run MCell itself, the mcell executable must be placed in the 
+galaxy/tools/mcell directory. A recent version is currently stored in the 
+repository for convenience.
