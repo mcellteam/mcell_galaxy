@@ -42,16 +42,11 @@
   <help>
 **What it does**
 
-This tool builds a bar chart on one or more columns. Suppose you have dataset like this one::
+This tool plots MCell tabular output consisting of two or more columns. The first column is always assumed to be time.
 
-  Gene1	10	15
-  Gene2	20	14
-  Gene3	67	45
-  Gene4	55	12
+The example below contains the decay history of 3 releases of 3 different molecules.
 
-Graphing columns 2 and 3 while using column 1 for X Tick Labels will produce the following plot:
-
-.. image:: ${static_path}/images/bar_chart.png
+.. image:: ${static_path}/mcell/plot_reactions.png
    :height: 324
    :width: 540
 </help>
