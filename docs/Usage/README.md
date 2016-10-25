@@ -199,22 +199,74 @@ and that's what is selected in the "MDL file to run" field.
 
 The MCell run tool also contains an option seed that can be run. Changing the "Select a seed" field from
 "No" to "Yes" would bring up an additional field for setting the seed. It's not needed in this case,
-and we can use the default.
+and we can use the default. Click the "Execute" button to start running, and you should see the job
+submission status along with the yellow "job in progress" panel on the right. Note that in this example,
+the history item is shown as item "10" rather than the expected "6". That reflects several "trial and error"
+runs during the construction of this tutuorial. The Galaxy history makes it easy to delete data sets that
+didn't work out and run them again.
 
-
-![MCellGalaxy](../images/10_gnu_plot_all_columns.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/10_gnu_plot_setup.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/10_mcell_result_eye.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/10_mcell_result_tabular.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/10_mcell_running.png?raw=true "MCell in Galaxy")
 
-![MCellGalaxy](../images/11_gnu_plot_details.png?raw=true "MCell in Galaxy")
+Once the MCell is done running, the data set item (10 in this example) will turn green, and you'll see
+that it contains 501 lines of "tabular" data (click the data set name to show this).
+
+![MCellGalaxy](../images/10_mcell_result_tabular.png?raw=true "MCell in Galaxy")
+
+As usual, we can use the "eye" button to show the actual data. Click it and you'll see these 4 columns
+which represent time (on the left) and the counts of the 3 different molecules in the simulation (columns
+2, 3, and 4).
+
+![MCellGalaxy](../images/10_mcell_result_eye.png?raw=true "MCell in Galaxy")
+
+Now let's use GnuPlot to plot these 3 data columns as a function of time. Click the "GNU Plot Multiple"
+tool item in the left panel to show the plotting panel in the center:
+
+![MCellGalaxy](../images/10_gnu_plot_setup.png?raw=true "MCell in Galaxy")
+
+This tool allows selection of individual columns. For now, click the "Select/Unselect All" check box
+so that it shows all of the columns:
+
+![MCellGalaxy](../images/10_gnu_plot_all_columns.png?raw=true "MCell in Galaxy")
+
+Then click the "Execute" button to run the plotting job. It will show when it is done:
+
 ![MCellGalaxy](../images/11_gnu_plot_done.png?raw=true "MCell in Galaxy")
+
+As before, we can click the data set name (green panel) to show more details. In this case, we see that the 
+result "11: GNU Plot Multiple on data 10" data set has been created. It is 4.6KB in size and is a "png" image
+format.
+
+![MCellGalaxy](../images/11_gnu_plot_details.png?raw=true "MCell in Galaxy")
+
+We can again click on the "eye" button to view the data and it should show the PNG file created by GnuPlot:
+
 ![MCellGalaxy](../images/11_gnu_plot_eye.png?raw=true "MCell in Galaxy")
+
+GnuPlot does a pretty good job, but Galaxy is not limited to any one plotting package. For example, the
+MCell tool group also contains a MatPlotLib plotter named "Plot MPL". If you click the "Plot MPL" tool,
+it will bring up this panel in the center:
+
 ![MCellGalaxy](../images/11_plot_mpl_blank.png?raw=true "MCell in Galaxy")
+
+There are a number of features (many of which are still under development), but you can select a data set
+and choose to show all columns just as you did with the GnuPlot tool:
+
 ![MCellGalaxy](../images/11_plot_mpl_select_all.png?raw=true "MCell in Galaxy")
 
-![MCellGalaxy](../images/12_plot_mpl_details.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/12_plot_mpl.png?raw=true "MCell in Galaxy")
+Click the "Execute" button, and you'll again see the familiar yellow "processing" panel as it builds the
+resulting data set:
+
 ![MCellGalaxy](../images/12_plot_mpl_processing.png?raw=true "MCell in Galaxy")
+
+When it's done, you can again click on the data set name to show that this tool also produces a PNG file,
+and in this example it is 33.7KB in size.
+
+![MCellGalaxy](../images/12_plot_mpl_details.png?raw=true "MCell in Galaxy")
+
+You can also click the "eye" button to show the actual results which should be a plot similar to the
+GnuPlot version:
+
+![MCellGalaxy](../images/12_plot_mpl.png?raw=true "MCell in Galaxy")
+
+
 
