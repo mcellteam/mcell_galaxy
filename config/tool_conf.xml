@@ -8,10 +8,10 @@
     <tool file="mcell/run_mcell_mdl.xml" />
     <tool file="mcell/plot_mpl.xml" />
     <tool file="mcell/plot_gnu_multiple.xml" />
-    <tool file="mcell/plot_gnu_simple.xml" />
-    <tool file="mcell/run_mcell.xml" />
-    <tool file="mcell/plot_gnu.xml" />
-    <tool file="mcell/test_cheetah.xml" />
+    <!-- tool file="mcell/plot_gnu_simple.xml" / -->
+    <!-- tool file="mcell/run_mcell.xml" / -->
+    <!-- tool file="mcell/plot_gnu.xml" / -->
+    <!-- tool file="mcell/test_cheetah.xml" / -->
   </section>
   <section id="getext" name="Get Data">
     <tool file="data_source/upload.xml" />
