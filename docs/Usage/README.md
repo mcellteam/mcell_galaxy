@@ -1,5 +1,8 @@
 # MCell Galaxy
 
+.. WARNING::
+   This is a preliminary version.
+
 ## Galaxy tools to run MCell within Galaxy
 
 This suite of tools supports uploading of MCell/CellBlender data models, 
@@ -232,7 +235,7 @@ Then click the "Execute" button to run the plotting job. It will show when it is
 
 ![MCellGalaxy](../images/11_gnu_plot_done.png?raw=true "MCell in Galaxy")
 
-As before, we can click the data set name (green panel) to show more details. In this case, we see that the 
+As before, we can click the data set name (green panel) to show more details. In this case, we see that the
 result "11: GNU Plot Multiple on data 10" data set has been created. It is 4.6KB in size and is a "png" image
 format.
 
