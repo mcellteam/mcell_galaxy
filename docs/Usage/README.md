@@ -64,33 +64,120 @@ line breaks), and the default display is just the text without any wrapping:
 
 ![MCellGalaxy](../images/01_first_data_set_eye_view.png?raw=true "MCell in Galaxy")
 
+Since this "raw" view of the JSON data model isn't particularly helpful, the The MCell
+Galaxy tool section also contains a "Show Data Model" tool which will format the data and
+produce an HTML output file which Galaxy can display. Click on the "Show Data Model" tool,
+and it will bring up a tool view in the center panel that looks like this:
 
 ![MCellGalaxy](../images/01_show_data_model_tool.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/02_modify_parameters_dr_2to3e4.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/02_modify_parameters_empty.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/02_show_data_model_details.png?raw=true "MCell in Galaxy")
+
+This is the standard Galaxy tool interface, and you'll notice a number of controls in
+the panel. One of the most important controls is the data set being operated on. In this
+case it's titled "JSON data model to display", and it contains a drop down selection box.
+That box chooses from among the data sets that are in the "History" panel (on the right).
+At this point, the only history is our uploaded JSON file ("Release_Decay.json") and that's
+what is selected by default. Each tool knows what types of data set it can use, and it will
+select (by default) the most recent data set appropriate for that tool. You'll see how that
+makes things easier as we continue to add new datasets in the Galaxy workflow. For now, click
+the "Execute" button and that will run the "Show Data Model" tool. When it's finished, you
+should see that the job has been queued and it should show this result:
+
 ![MCellGalaxy](../images/02_show_data_model_done.png?raw=true "MCell in Galaxy")
+
+As before, we can click on the data set name ("2: Show Data Model on data 1") to see more details:
+
+![MCellGalaxy](../images/02_show_data_model_details.png?raw=true "MCell in Galaxy")
+
+This expands the green section to show a little more about the data set. For example, we can
+see that this data set is 15.1KB in "html" format. To see the actual results, click the "View data" 
+(eye button) to see the HTML page rendered in the center panel:
+
 ![MCellGalaxy](../images/02_show_data_model_eye_view.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/03_modify_parameters_data_model.png?raw=true "MCell in Galaxy")
+
+This is an HTML rendering of the data model file that we uploaded. Since this tool is geared
+toward running MCell simulations, the available parameters have been displayed at the top. These
+are the things we can change in this particular model. The HTML page also shows the "raw" JSON
+Data Model below the parameters. This is a slightly better format than the Galaxy default of a
+single line shown earlier.
+
+We could run this model just as it is, but we'll change one of the parameters first while we're
+looking at them. This current MCell/Galaxy tool doesn't have a mechanism to change parameters
+from the HTML display, so we'll use another tool (in the left panel) called "Modify Parameters".
+But before we do that, we should note which parameter it is that we want to change and what new
+value we want to use. For our example, we'll change the "Decay Reaction Rate" (dr) from its
+current value of 2e4 to a new value of 3e4. Once we've made that note, we can click on the
+"Modify Parameters" tool which brings up the following page:
+
+![MCellGalaxy](../images/02_modify_parameters_empty.png?raw=true "MCell in Galaxy")
+
+As usual, the first item in that page is the data set that we're going to operate on. This is
+our "Release_Decay.json" file that we've been using. Notice that because this tool expects to
+use a JSON file, the default is our first set (which is JSON) and NOT our second set (which is
+HTML). In order to modify a parameter with this tool we need to use the "Insert MCell Parameters
+to Modify" button. Clicking that button will add a new name/value pair to the list. You should
+type the name ("dr") in the "Parameter Name" field, and type "3e4" in the "Parameter Value" field.
+You could change additional parameter fields at this time by using the "Insert..." button as many
+times as needed. For now, we'll just make that one change as shown here:
+
+![MCellGalaxy](../images/02_modify_parameters_dr_2to3e4.png?raw=true "MCell in Galaxy")
+
+When we press "Execute" it will again run the job and show us a completed result and the new
+data set ("3: Modify Parameters on data 1") will appear in the history panel on the right:
+
 ![MCellGalaxy](../images/03_modify_parameters_done.png?raw=true "MCell in Galaxy")
+
+As before, we can click on the various controls to view our data. In this case the name has been
+clicked which shows the expanded information here:
+
+![MCellGalaxy](../images/03_modify_parameters_data_model.png?raw=true "MCell in Galaxy")
+
+If we want to see the HTML display with our newly changed value, we can again run the "Show Data Model"
+tool on the newly created data set. Click on the "Show Data Model" item in the left panel to show this:
+
 ![MCellGalaxy](../images/03_modify_parameters_show_change.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/04_data_model_to_mdl.png?raw=true "MCell in Galaxy")
-![MCellGalaxy](../images/04_modify_parameters_details.png?raw=true "MCell in Galaxy")
+
+As before, the default data set will be the most recent one from the history that fits with this
+tool. Since this tool displays a JSON data model, it will select history item 3 because it's a
+JSON data set and it is more recent than our original JSON file (history item 1). If we click the
+"Execute" button, it will again generate an HTML data set showing the parameters and complete
+data model from this most recent JSON file.
+
 ![MCellGalaxy](../images/04_modify_parameters_show_done.png?raw=true "MCell in Galaxy")
+
+As before, the newly created data set is added to the top of the history stack. This one is shown
+as number 4 in this particular history. As before, we can click on the data set name in the right
+(green) panel to show more details:
+
+![MCellGalaxy](../images/04_modify_parameters_details.png?raw=true "MCell in Galaxy")
+
+As before, the "Show Data Model" tool has produced an HTML file of about 15KB. We can also click on 
+the "eye" icon to see the data set itself:
+
+![MCellGalaxy](../images/04_show_data_set_html.png?raw=true "MCell in Galaxy")
+
+
+![MCellGalaxy](../images/04_data_model_to_mdl.png?raw=true "MCell in Galaxy")
+
+ The new data set will be number 4 in the history panel:
+ 
+
 ![MCellGalaxy](../images/05_data_model_to_mdl_details.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/05_data_model_to_mdl_done.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/05_data_model_to_mdl_eye.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/05_run_mcell_page.png?raw=true "MCell in Galaxy")
+
 ![MCellGalaxy](../images/10_gnu_plot_all_columns.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/10_gnu_plot_setup.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/10_mcell_result_eye.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/10_mcell_result_tabular.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/10_mcell_running.png?raw=true "MCell in Galaxy")
+
 ![MCellGalaxy](../images/11_gnu_plot_details.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/11_gnu_plot_done.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/11_gnu_plot_eye.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/11_plot_mpl_blank.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/11_plot_mpl_select_all.png?raw=true "MCell in Galaxy")
+
 ![MCellGalaxy](../images/12_plot_mpl_details.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/12_plot_mpl.png?raw=true "MCell in Galaxy")
 ![MCellGalaxy](../images/12_plot_mpl_processing.png?raw=true "MCell in Galaxy")
