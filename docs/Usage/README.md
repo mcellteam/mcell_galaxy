@@ -203,8 +203,8 @@ Once again, it has guessed at the most recent (and compatible) data set to use f
 looking for a text (MDL) file, the most recent item in the history is "5: Data Model to MDL on data 3",
 and that's what is selected in the "MDL file to run" field.
 
-The MCell run tool also contains an option seed that can be run. Changing the "Select a seed" field from
-"No" to "Yes" would bring up an additional field for setting the seed. It's not needed in this case,
+The MCell run tool also contains an optional seed that can be chose. Changing the "Select a seed" field
+from "No" to "Yes" would bring up an additional field for setting the seed. It's not needed in this case,
 and we can use the default. Click the "Execute" button to start running, and you should see the job
 submission status along with the yellow "job in progress" panel on the right. Note that in this example,
 the history item is shown as item "10" rather than the expected "6". That reflects several "trial and error"
@@ -213,7 +213,7 @@ didn't work out and run them again.
 
 ![MCellGalaxy](../images/10_mcell_running.png?raw=true "MCell in Galaxy")
 
-Once the MCell is done running, the data set item (10 in this example) will turn green, and you'll see
+Once the MCell job is done running, the data set item (10 in this example) will turn green, and you'll see
 that it contains 501 lines of "tabular" data (click the data set name to show this).
 
 ![MCellGalaxy](../images/10_mcell_result_tabular.png?raw=true "MCell in Galaxy")
@@ -274,5 +274,17 @@ GnuPlot version:
 
 ![MCellGalaxy](../images/12_plot_mpl.png?raw=true "MCell in Galaxy")
 
+## Conclusion
 
+This version of MCell/Galaxy is based on a number of very small steps:
+
+* Uploading a JSON file
+* Modifying the JSON file to change parameter values
+* Converting the JSON file to an MDL file
+* Running an MCell simulation to generate output
+* Plotting the output
+
+Each of these small steps takes one input data set and produces one output data set. This opens up
+the possibility of pipelining these steps to produce higher level work flows while still using very
+small and simple tools.
 
