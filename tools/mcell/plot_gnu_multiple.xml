@@ -2,7 +2,7 @@
   <description>for multiple columns</description>
   <command interpreter="python">
     <!-- This is cheetah code to turn inputs into a command line -->
-    plot_gnu_multiple.py $input $png_out "$title"
+    plot_gnu_multiple.py $input $png_out "$title" $colList
   </command>
   <inputs>
     <param name="input" type="data" format="tabular" label="Dataset" help="Dataset missing? See TIP below"/>

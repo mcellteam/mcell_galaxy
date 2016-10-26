@@ -1,37 +1,38 @@
 <tool id="plot_mpl" name="Plot MPL" version="1.0.0">
   <description>for multiple columns</description>
   <command interpreter="python">
-    #if $xtic.userSpecified == "Yes" #plot_mpl.py $input $xtic.xticColumn $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size" $dpi
-    #else                            #plot_mpl.py $input 0                $colList "$title" "$ylabel" $ymin $ymax $out_file1 "$pdf_size" $dpi
+    #if $adv.xtic.userSpecified == "Yes" #plot_mpl.py $input $out_file1 $colList $adv.xtic.xticColumn "$title" "$xlabel" "$ylabel" $adv.ymin $adv.ymax "$adv.pdf_size" $adv.dpi
+    #else                                #plot_mpl.py $input $out_file1 $colList 0                    "$title" "$xlabel" "$ylabel" $adv.ymin $adv.ymax $out_file1 "$adv.pdf_size" $adv.dpi
     #end if
   </command>
   <inputs>
-    <param name="input" type="data" format="tabular" label="Dataset" help="Dataset missing? See TIP below"/>
-    <conditional name="xtic">
-        <param name="userSpecified" type="select" label="Use X Tick labels?" help="see example below">
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </param>
-        <when value="Yes">
-            <param name="xticColumn" type="data_column" data_ref="input" numerical="False" label="Use this column for X Tick labels" />
-        </when>
-        <when value="No">
-        </when>
-    </conditional>
-    <param name="colList" label="Numerical columns" type="data_column" numerical="True" multiple="True" data_ref="input" help="Multi-select list - delete unwanted items" />
-    <param name="title" type="text" size="30" value="Bar Chart" label="Plot title"/>
-    <param name="ylabel" type="text" size="30" value="V1" label="Label for Y axis"/>
-    <param name="ymin" type="integer" size="4" value="0" label="Minimal value on Y axis" help="set to 0 for autoscaling"/>
-    <param name="ymax" type="integer" size="4" value="0" label="Maximal value on Y axis" help="set to 0 for autoscaling"/>
-    <param name="pdf_size" type="select" label="Choose chart size (pixels)">
-        <option value="800,600">Normal: 800 by 600</option>
-        <option value="640,480">Small: 640 by 480</option>
-        <option value="1480,800">Large: 1480 by 800</option>
-        <option value="600,800">Normal Flipped: 600 by 800</option>
-        <option value="480,640">Small Flipped: 480 by 640</option>
-        <option value="800,1480">Large Flipped: 800 by 1480</option>
-    </param>
-    <param name="dpi" type="integer" size="4" value="100" label="Dots Per Inch of Image"/>
+    <param name="input" type="data" format="tabular" label="Dataset" help="Choose a data set to plot"/>
+    <param name="colList" label="Numerical columns" type="data_column" numerical="True" multiple="True" data_ref="input" help="Multi-select list - select all, then delete unwanted items" />
+    <param name="title" type="text" size="30" value="Reaction Data" label="Plot title"/>
+    <param name="xlabel" type="text" size="30" value="Time (s)" label="Label for X axis"/>
+    <param name="ylabel" type="text" size="30" value="Count" label="Label for Y axis"/>
+
+    <section name="adv" title="Additional Options" expanded="False">
+      <conditional name="xtic">
+          <param name="userSpecified" type="select" label="Use X Tick labels?" help="see example below">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+          </param>
+          <when value="Yes">
+              <param name="xticColumn" type="data_column" data_ref="input" numerical="False" label="Use this column for X Tick labels" />
+          </when>
+          <when value="No">
+          </when>
+      </conditional>
+      <param name="ymin" type="integer" size="4" value="0" label="Minimal value on Y axis" help="set to 0 for autoscaling"/>
+      <param name="ymax" type="integer" size="4" value="0" label="Maximal value on Y axis" help="set to 0 for autoscaling"/>
+      <param name="pdf_size" type="select" label="Choose chart size (pixels)">
+          <option value="800,600">Normal: 800 by 600</option>
+          <option value="640,480">Small: 640 by 480</option>
+          <option value="1480,800">Large: 1480 by 800</option>
+      </param>
+      <param name="dpi" type="integer" size="4" value="100" label="Dots Per Inch of Image"/>
+    </section>
   </inputs>
   <outputs>
     <data format="png" name="out_file1" />

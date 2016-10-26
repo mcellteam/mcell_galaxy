@@ -26,6 +26,7 @@ import tempfile
 import os
 import subprocess
 
+# This is a convenient file location for debug output
 f = open ( '../../../../../../junk_out.txt', 'w' )
 f.write ( "In __main__\n" )
 f.write ( "cwd = " + os.getcwd() + "\n" )
@@ -48,45 +49,51 @@ try:
 except:
   stop_err("No MatPlotLib\n")
 
-f.write ( "mpl savefig.dpi = " + str(mpl.rcParams['savefig.dpi']) )
+f.write ( "mpl savefig.dpi = " + str(mpl.rcParams['savefig.dpi']) + "\n" )
 
 infile = sys.argv[1]
-pngfile = sys.argv[8]
-title = sys.argv[4]
-dpi = sys.argv[10]
+pngfile = sys.argv[2]
+cols_to_plot = [int(v)-1 for v in sys.argv[3].split(',')]
+title = sys.argv[5]
+xlabel = sys.argv[6]
+ylabel = sys.argv[7]
+dpi = sys.argv[11]
 
-# Determine the number of columns
+# Convert the data file into a table
 data_file = open ( infile )
-
 table = [x.strip().split('\t') for x in data_file]
 
+# Determine the number of columns in the table
 num_cols = 0
 if len(table) > 0:
   if len(table[0]) > 0:
     num_cols = len(table[0])
 
-f.write ( "Num columns = " + str(num_cols) )
+f.write ( "Num columns = " + str(num_cols) + "\n" )
 
 if num_cols > 1:
 
   #mpl.rcParams['figure.facecolor'] = 'white'
 
   fig = plt.figure()
-  fig.suptitle('Reaction Data', fontsize=18.5)
+  fig.suptitle(title, fontsize=18.5)
   ax = fig.add_subplot(111)
   ax.spines['top'].set_color('none')
   ax.spines['right'].set_color('none')
   ax.xaxis.set_ticks_position('bottom')
   ax.yaxis.set_ticks_position('left')
-  ax.set_xlabel(r'Time (s)')
-  ax.set_ylabel(r'Count')
+  ax.set_xlabel(xlabel)
+  ax.set_ylabel(ylabel)
+  #ax.set_xlabel(r'Time (s)')
+  #ax.set_ylabel(r'Count')
   
   t_vals = [ s[0] for s in table ]
 
   legend = False
   for col in range(1, num_cols):
-    y_vals = [ s[col] for s in table ]
-    ax.plot ( t_vals, y_vals, label="Column %d" % col )
+    if col in cols_to_plot:
+      y_vals = [ s[col] for s in table ]
+      ax.plot ( t_vals, y_vals, label="Column %d" % col )
 
   plt.savefig(pngfile, format="png", facecolor='white', dpi=float(dpi))
 
