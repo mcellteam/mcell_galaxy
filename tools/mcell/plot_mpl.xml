@@ -1,16 +1,29 @@
 <tool id="plot_mpl" name="Plot MPL" version="1.0.0">
   <description>for multiple columns</description>
   <command interpreter="python">
-    #if $adv.xtic.userSpecified == "Yes" #plot_mpl.py $input $out_file1 $colList $adv.xtic.xticColumn "$title" "$xlabel" "$ylabel" $adv.ymin $adv.ymax $adv.dpi
-    #else                                #plot_mpl.py $input $out_file1 $colList 0                    "$title" "$xlabel" "$ylabel" $adv.ymin $adv.ymax $adv.dpi
+    <!-- tool->command
+      This tag specifies how Galaxy should invoke the tool's executable, passing its required input parameter values 
+      (the command line specification links the parameters supplied in the form with the actual tool executable). 
+      Any word inside it starting with a dollar sign ($) will be treated as a variable whose values can be acquired 
+      from one of three sources: parameters, metadata, or output files. After the substitution of variables with their 
+      values, the content is interpreted with Cheetah and finally given to the interpreter specified in the corresponding 
+      attribute (if any).
+    -->
+    <!--                                      0          1       2         3       4       5        6         7        8              9               10        11     -->
+    #if $adv.xtic.userSpecified == "Yes" #plot_mpl.py $input $png_file $colList $xAxis "$title" "$xlabel" "$ylabel" $dpi $adv.xtic.xticColumn $adv.ymin $adv.ymax
+    #else                                #plot_mpl.py $input $png_file $colList $xAxis "$title" "$xlabel" "$ylabel" $dpi 0                    $adv.ymin $adv.ymax
     #end if
   </command>
   <inputs>
-    <param name="input" type="data" format="tabular" label="Dataset" help="Choose a data set to plot"/>
-    <param name="colList" label="Numerical columns" type="data_column" numerical="True" multiple="True" data_ref="input" help="Multi-select list - select all, then delete unwanted items" />
-    <param name="title" type="text" size="30" value="Reaction Data" label="Plot title"/>
-    <param name="xlabel" type="text" size="30" value="Time (s)" label="Label for X axis"/>
-    <param name="ylabel" type="text" size="30" value="Count" label="Label for Y axis"/>
+    <param name="input"   type="data"        label="Dataset"                format="tabular" help="Choose a data set to plot"/>
+
+    <param name="colList" type="data_column" label="Numerical columns"      numerical="True" multiple="True"  data_ref="input" help="Multi-select list - select all, then delete unwanted items" />
+    <param name="xAxis"   type="data_column" label="X Axis Column"          numerical="True" multiple="False" data_ref="input"/>
+
+    <param name="title"   type="text"        label="Plot title"             size="30" value="Reaction Data"/>
+    <param name="xlabel"  type="text"        label="Label for X axis"       size="30" value="Time (s)"/>
+    <param name="ylabel"  type="text"        label="Label for Y axis"       size="30" value="Count"/>
+    <param name="dpi"     type="integer"     label="Dots Per Inch of Image" size="4"  value="100"/>
 
     <section name="adv" title="Experimental Options" expanded="False">
       <conditional name="xtic">
@@ -26,11 +39,10 @@
       </conditional>
       <param name="ymin" type="integer" size="4" value="0" label="Minimal value on Y axis" help="set to 0 for autoscaling"/>
       <param name="ymax" type="integer" size="4" value="0" label="Maximal value on Y axis" help="set to 0 for autoscaling"/>
-      <param name="dpi" type="integer" size="4" value="100" label="Dots Per Inch of Image"/>
     </section>
   </inputs>
   <outputs>
-    <data format="png" name="out_file1" />
+    <data format="png" name="png_file" />
   </outputs>
   <requirements>
     <requirement type="python-module">matplotlib</requirement>
@@ -38,7 +50,7 @@
   <help>
 **What it does**
 
-This tool plots MCell tabular output consisting of two or more columns. The first column is always assumed to be time.
+This tool plots MCell tabular output consisting of two or more columns. Any column may be selected as the x axis.
 
 The example below contains the decay history of 3 releases of 3 different molecules.
 
