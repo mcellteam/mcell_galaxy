@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<tool name="Test Bed [EXPERIMENTAL]" id="test_bed1" version="0.0.1" workflow_compatible="true">
+
+  <description>
+    ( used for Galaxy code testing )
+  </description>
+
+  <requirements>
+      <requirement type="package">samtools</requirement>
+  </requirements>
+
+  <command interpreter="python">
+     test_bed.py 
+       $test_bed_out 
+       $test_text_unq 
+      "$test_text_quo" 
+      "$test_text_block" 
+       $test_int 
+       $test_float 
+       $test_boolean 
+       $test_on_off 
+       $test_data_text 
+       $test_select 
+      "$test_color_hex" 
+      "$test_color_rgb"
+  </command>
+
+  <inputs nginx_upload="false">
+  
+    <param type="text" name="test_text_unq" value="Some unquoted text"/>
+    <param type="text" name="test_text_quo" value="Some quoted text"/>
+
+    <param type="text" name="test_text_block" area="True" value="A text area."/>  <!-- size="10x40"  didn't seem to work -->
+
+    <param type="integer" name="test_int" value="33" min="0" max="100"/>
+    <param type="float" name="test_float" value="33.3" min="0" max="100"/>
+
+    <param type="boolean" name="test_boolean" checked="True"/>
+    <param type="boolean" name="test_on_off" truevalue="ON" falsevalue="OFF"/> <!-- the truevalue and falsevalue determine what is sent to the program -->
+
+    <param type="data" name="test_data_text" format="txt" label="Select a text file from history:"/>
+
+    <param type="select" name="test_select" label="Select:">
+      <option value="opt1">Option One</option>
+      <option value="opt2">Option Two</option>
+      <option value="opt3" selected="True">Option Three</option>
+      <option value="opt4">Option Four</option>
+    </param>
+
+    <!-- data_column  -->
+    <!-- drill_down  -->
+    <!-- data_collection  -->
+
+    <param type="color" name="test_color_hex" label="Select Hex Color"/>
+    <param type="color" name="test_color_rgb" rgb="True" label="Select RGB Color"/>
+
+    <!--param type="data" name="test_data_from_data_set" format="txt" label="Select via a data set:">
+      <options from_dataset="txt">
+        <column name="name" index=" ">
+      </options>
+    </param-->
+
+<!--   -->
+
+    <param type="select" name="file_type" label="File Format" help="Which format? See help below">
+      <options from_parameter="tool.app.datatypes_registry.upload_file_formats" transform_lines="[ &quot;%s%s%s&quot; % ( line, self.separator, line ) for line in obj ]">
+        <column name="value" index="1"/>
+        <column name="name" index="0"/>
+        <filter type="sort_by" column="0"/>
+        <filter type="add_value" name="Auto-detect" value="auto" index="0"/>
+      </options>
+    </param>
+
+    <param type="hidden" name="async_datasets" value="None"/>
+
+    <upload_dataset name="files" title="Specify Files for Dataset" file_type_name="file_type" metadata_ref="files_metadata">
+
+      <param type="file" name="file_data" size="30" label="File" ajax-upload="true" help="TIP: Due to browser limitations, uploading files larger than 2GB is guaranteed to fail.  To upload large files, use the URL method (below) or FTP (if enabled by the site administrator).">
+      </param>
+
+      <param type="text" name="url_paste" area="true" size="5x35" label="URL/Text" help="Here you may specify a list of URLs (one per line) or paste the contents of a file."/> 
+
+      <param type="ftpfile" name="ftp_files" label="Files uploaded via FTP"/>
+      <!-- Swap the following parameter for the select one that follows to
+           enable the to_posix_lines option in the Web GUI. See Bitbucket
+           Pull Request 171 for more information. -->
+      <param type="hidden" name="uuid" required="False" />
+
+      <param type="hidden" name="to_posix_lines" value="Yes" />
+
+      <!--
+      <param name="to_posix_lines" type="select" display="checkboxes" multiple="True" label="Convert universal line endings to Posix line endings" help="Turn this option off if you upload a gzip, bz2 or zip archive which contains a binary file." value="Yes"> 
+        <option value="Yes" selected="true">Yes</option>
+      </param>
+      -->
+
+      <param type="select" name="space_to_tab" display="checkboxes" multiple="True" label="Convert spaces to tabs" help="Use this option if you are entering intervals by hand."> 
+        <option value="Yes">Yes</option>
+      </param>
+
+      <param type="hidden" name="NAME" help="Name for dataset in upload"></param>
+    </upload_dataset>
+
+    <param type="genomebuild" name="dbkey" label="Genome" />
+
+    <conditional name="files_metadata" title="Specify metadata" value_from="self:app.datatypes_registry.get_upload_metadata_params" value_ref="file_type" value_ref_in_group="False" />
+
+    <!-- <param type="text" name="other_dbkey" label="Or user-defined Genome" /> -->
+
+  </inputs>
+
+  <outputs>
+    <data format="txt" name="test_bed_out"/>
+  </outputs>
+
+  <help>
+  
+**Help Text**
+
+This is some ReStructured Text for help ...
+
+
+  </help>
+
+
+</tool>
