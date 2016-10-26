@@ -18,7 +18,7 @@ for i in range (len(sys.argv)):
 
 infile = sys.argv[1]
 pngfile = sys.argv[2]
-title = sys.argv[3]
+title = ""
 
 # Determine the number of columns
 data_file = open ( infile )

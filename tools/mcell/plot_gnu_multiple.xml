@@ -2,12 +2,10 @@
   <description>for multiple columns</description>
   <command interpreter="python">
     <!-- This is cheetah code to turn inputs into a command line -->
-    plot_gnu_multiple.py $input $png_out "$title" $colList
+    plot_gnu_multiple.py $input $png_out
   </command>
   <inputs>
     <param name="input" type="data" format="tabular" label="Dataset" help="Dataset missing? See TIP below"/>
-    <param name="title" type="text" size="30" value="Plot" label="Plot title"/>
-    <param name="colList" label="Columns" type="data_column" numerical="True" multiple="True" data_ref="input" help="Multi-select list - delete unwanted items" />
   </inputs>
   <outputs>
     <data format="png" name="png_out" />
