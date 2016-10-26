@@ -57,7 +57,7 @@ cols_to_plot = [int(v)-1 for v in sys.argv[3].split(',')]
 title = sys.argv[5]
 xlabel = sys.argv[6]
 ylabel = sys.argv[7]
-dpi = sys.argv[11]
+dpi = sys.argv[10]
 
 # Convert the data file into a table
 data_file = open ( infile )
