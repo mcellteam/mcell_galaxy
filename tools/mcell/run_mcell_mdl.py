@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Read a JSON Data Model and run MCell
+Run MCell from an MDL file
 """
 
 import os
