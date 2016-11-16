@@ -10,6 +10,7 @@
     <tool file="mcell/plot_gnu_multiple.xml" />
     <tool file="mcell/modify_pars.xml" />
     <tool file="mcell/test_bed.xml" />
+    <tool file="mcell/dyn_opts.xml" />
     <!-- tool file="mcell/plot_gnu_simple.xml" / -->
     <!-- tool file="mcell/run_mcell.xml" / -->
     <!-- tool file="mcell/plot_gnu.xml" / -->

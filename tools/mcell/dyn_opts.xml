@@ -1,0 +1,16 @@
+<tool id="DYN_OPTS1" name="Dynamic Options" force_history_refresh="True" version="0.0.1">
+  <description>Demonstrate the use of Dynamic Options.</description>
+  <inputs>
+    <param name="foo" type="select" label="what"
+           help="Use tickboxes to select" display="radio" 
+           dynamic_options="ds_fooOptions()"/>
+  </inputs>
+  <outputs>
+    <data format="text" name="output" label="more foo" />
+  </outputs>
+  <code file="dyn_opts.py" />
+  <help>
+    **Experiment with dynamic options from http://dev.list.galaxyproject.org/Dynamic-Tool-Parameter-Lists-td4175828.html **
+  </help>
+</tool>
+
