@@ -1,0 +1,38 @@
+<tool id="MOD_PARS1" name="Modify JSON Parameters" force_history_refresh="True" version="0.0.1">
+  <!--
+    Cheetah:
+      $anything is a "placeholder". Placeholders can be surrounded by {}, or (), or [], or nothing at all. Examples: $fname $(mi) ${lname}
+      #anything is a "directive"
+  -->
+  <description>Modify Parameters in a JSON File.</description>
+  <command interpreter="python">
+    modify_pars.py $json_input $json_output 
+    #set eq = '='
+    #for $par in $json_parameters:
+      #set $par_val = str($par.par_name)+$eq+str($par.par_value)
+      {$par_val}
+    #end for
+  </command>
+  <inputs>
+    <param format="json" name="json_input" type="data" label="JSON file to modify"/>
+    <repeat name="json_parameters" title="MCell Parameters to Modify">
+        <param name="par_name" type="text" size="4" value="Par_Name" label="Parameter Name" />
+        <param name="par_value" type="float" size="4" value="0" label="Parameter Value" />
+    </repeat>
+  </inputs>
+  <outputs>
+    <data format="json" name="json_output" />
+  </outputs>
+  <tests>
+    <!--test>
+    </test-->
+  </tests>
+  <help>
+
+**What it does**
+
+This tool changes parameter values in a JSON file.
+It can also add new parameters.
+    </help>
+</tool>
+

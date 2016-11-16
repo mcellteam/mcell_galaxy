@@ -1,0 +1,21 @@
+{
+  "parameters":
+    [
+      {
+        "par_name": "length", 
+        "par_expression": "25",
+        "par_units": "meters"
+      },
+      {
+        "par_name": "width", 
+        "par_expression": "5",
+        "par_units": "meters"
+      },
+      {
+        "par_name": "height", 
+        "par_expression": "2",
+        "par_units": "meters"
+      }
+    ]
+}
+
