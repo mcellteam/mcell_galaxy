@@ -17,8 +17,10 @@ as shown here:
         <tool file="mcell/run_mcell_mdl.xml" />
         <tool file="mcell/plot_mpl.xml" />
         <tool file="mcell/plot_gnu_multiple.xml" />
+        <tool file="mcell/modify_pars.xml" />
+        <tool file="mcell/test_bed.xml" />
+        <tool file="mcell/dyn_opts.xml" />
       </section>
-
 
 In order to run MCell itself, the mcell executable must be placed in the 
 galaxy/tools/mcell directory. A recent version is currently stored in the 
